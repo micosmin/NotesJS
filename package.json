@@ -1,0 +1,23 @@
+{
+  "name": "notesapp",
+  "version": "1.0.0",
+  "description": "As a programmer I can see a list of my notes, where each note is abbreviated to the first 20 characters So I can find the one I want",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micosmin/NotesJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/micosmin/NotesJS/issues"
+  },
+  "homepage": "https://github.com/micosmin/NotesJS#readme"
+}

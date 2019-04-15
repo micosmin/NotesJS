@@ -108,3 +108,17 @@ function testInitialText(text) {
 }
 testInitialText("My favourite language is JavaScript");
 ```
+
+?
+
+> All models are wrapped in IIFS for module patter
+
+## Running a node http server
+
+```
+//In your project, run:
+
+$ cd root/of/your-project/
+$ npm install http-server --save
+$ node node_modules/http-server/bin/http-server
+```
