@@ -52,3 +52,39 @@ this - represents the global scope as well
 ## One module requiring another module
 
 - just use the method exported as it gets exported to the global level
+
+## Writing tests withouth a testing library
+
+```js
+// assert.js
+var assert = {
+  isTrue: function(assertionToCheck) {
+    if (!assertionToCheck) {
+      throw new Error("Assertion failed: " + assertionToCheck + " is not truthy");
+    }
+  };
+};
+```
+
+```js
+// circle-tests.js
+
+function testCircleRadiusDefaultsTo10() {
+  var circle = new Circle();
+  assert.isTrue(circle.radius === 10);
+}
+
+testCircleRadiusDefaultsTo10();
+```
+
+## Unit tests:
+
+- TDD creation of a note object
+
+```js
+var Note = function() {};
+
+var newNote = new Note();
+
+assert.toBeA(Note); //type of equality?
+```
