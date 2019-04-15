@@ -124,3 +124,8 @@ $ node node_modules/http-server/bin/http-server
 ```
 
 `npm install` - looks at package.json and install dependencies
+
+## Controller js
+
+- create node-controller.js file
+- load it in the html page
