@@ -122,3 +122,5 @@ $ cd root/of/your-project/
 $ npm install http-server --save
 $ node node_modules/http-server/bin/http-server
 ```
+
+`npm install` - looks at package.json and install dependencies
