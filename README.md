@@ -82,9 +82,29 @@ testCircleRadiusDefaultsTo10();
 - TDD creation of a note object
 
 ```js
-var Note = function() {};
+// Assert file
+var assert = {
+  isTrue: function(objectToCheck) {
+    if (!objectToCheck) {
+      throw new Error("Assertion failed: " + objectToCheck + " is not truthy");
+    } else {
+      console.log("Success");
+    }
+  }
+};
+```
 
-var newNote = new Note();
+```js
+//Test file
+function testThingIsANote() {
+  var note = new Note();
+  assert.isTrue(note instanceof Note);
+}
+testThingIsANote();
 
-assert.toBeA(Note); //type of equality?
+function testInitialText(text) {
+  var note = new Note(text);
+  assert.isTrue(note.getText() === text);
+}
+testInitialText("My favourite language is JavaScript");
 ```

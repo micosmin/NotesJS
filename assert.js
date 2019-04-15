@@ -7,3 +7,7 @@ var assert = {
     }
   }
 };
+
+// note list model
+// new instance has empty array
+// new instance is instanceOf notelist

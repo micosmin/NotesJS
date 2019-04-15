@@ -8,4 +8,4 @@ function testInitialText(text) {
   var note = new Note(text);
   assert.isTrue(note.getText() === text);
 }
-testInitialText("My favourite language is JavaScript")
+testInitialText("My favourite language is JavaScript");
