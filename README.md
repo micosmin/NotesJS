@@ -201,3 +201,31 @@ Test:
 - create a limit of only 20 characters for the note
   - update the note list view
   - TDD updating the code to only show 20 chars for each note in the list
+
+## Finish implementation of a single note page
+
+- use the hashchange event to load page content when the browser URL changes
+
+> hashchange event gets fired when the #identifier of the URL has changed
+
+```js
+window.addEventListener('hashChange', function() {});
+```
+
+- note model has unique id;
+  - TDD giving each note a uniq id:
+  - How? Where do i store the id? how do i keep track of previous ids
+    - Attempt to store in the noteModel in the iffy, outside the method being exported to the global namespace
+- link each note to a page to display the full note
+  - will most likely add a ahref attribute to each li
+  - TDD updating the note list view so that each note has a link to an appropriate URL /#notes/1
+- load the content of a single note page
+  - TDD updating note controller.js to load content for the single note page
+  - note controller must listen to hashChange events - when one happens change the content of app
+
+> Single Page app
+
+- once browser loads - no page refresh - all changes happen by manipulating HTML (insert html dynamically)
+  > Navigation
+- direct user to new 'page' when a click happens
+- use window.location.hash
