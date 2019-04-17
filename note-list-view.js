@@ -4,12 +4,13 @@
   }
 
   NoteListView.prototype.outputHtml = function() {
-    var html = "<ul>"
+    var html = '<ul>';
     for (item of this.noteList) {
-      html += `<li><div>${item}</div></li>`
+      html += `<li><div>${item}</div></li>`;
     }
-    html += "</ul>"
+    html += '</ul>';
+
     return html;
-  }
+  };
   exports.NoteListView = NoteListView;
 })(this);

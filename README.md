@@ -33,13 +33,13 @@ Module pattern in the browser:
   var EXCLAMATION_MARK_COUNT = 5;
 
   function exclaim(string) {
-    return string + "!".repeat(EXCLAMATION_MARK_COUNT);
+    return string + '!'.repeat(EXCLAMATION_MARK_COUNT);
   }
 
   exports.exclaim = exclaim; //must use exposts in the module - this function is exposed for us to use now / and also hidden implementation details / variales form insde the module don't clash with same name variables form outside the module
 })(this); //why use this?
 
-exclaim("hi"); // call the method exported
+exclaim('hi'); // call the method exported
 ```
 
 export - puts the method int he global scope, so i can call it exclaim("hi")
@@ -86,9 +86,9 @@ testCircleRadiusDefaultsTo10();
 var assert = {
   isTrue: function(objectToCheck) {
     if (!objectToCheck) {
-      throw new Error("Assertion failed: " + objectToCheck + " is not truthy");
+      throw new Error('Assertion failed: ' + objectToCheck + ' is not truthy');
     } else {
-      console.log("Success");
+      console.log('Success');
     }
   }
 };
@@ -106,7 +106,7 @@ function testInitialText(text) {
   var note = new Note(text);
   assert.isTrue(note.getText() === text);
 }
-testInitialText("My favourite language is JavaScript");
+testInitialText('My favourite language is JavaScript');
 ```
 
 ?
@@ -129,3 +129,55 @@ $ node node_modules/http-server/bin/http-server
 
 - create node-controller.js file
 - load it in the html page
+
+// Mocking
+// Make a function that you rely on - return a specific value
+
+```js
+//code ommited
+function test(){
+
+  var yourObject = new Object(){
+
+  yourObject.methodYouCall = function() {
+      return whateverYouWant;
+  })
+
+  };
+
+}
+```
+
+// Use a fake object
+
+```js
+// in the function test
+// create a double object
+
+function PlaneDouble() {}
+
+// add a method that is being called in the test
+
+PlaneDouble.prototype = {
+  something: function() {}
+};
+
+// call the planedouble somehwere your code needs it
+```
+
+// Check if a function got called
+
+```js
+//create double object which has a counter
+function test() {
+  function myDouble() {
+    this.checkCount = 0;
+  }
+
+  myDouble.prototype = {
+    method: function() {
+      this.checkCount += 1;
+    }
+  };
+}
+```
