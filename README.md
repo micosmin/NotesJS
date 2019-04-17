@@ -195,3 +195,9 @@ Test:
 
 - instantiation of note view object
 - creation of html
+
+## Show abbreviated notes on main page
+
+- create a limit of only 20 characters for the note
+  - update the note list view
+  - TDD updating the code to only show 20 chars for each note in the list
