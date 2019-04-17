@@ -130,11 +130,11 @@ $ node node_modules/http-server/bin/http-server
 - create node-controller.js file
 - load it in the html page
 
-// Mocking
-// Make a function that you rely on - return a specific value
+## Mocking
+
+### Make a function which you rely on to return a specific value
 
 ```js
-//code ommited
 function test(){
 
   var yourObject = new Object(){
@@ -148,7 +148,7 @@ function test(){
 }
 ```
 
-// Use a fake object
+### Use a fake object
 
 ```js
 // in the function test
@@ -165,7 +165,7 @@ PlaneDouble.prototype = {
 // call the planedouble somehwere your code needs it
 ```
 
-// Check if a function got called
+### Check if a function got called
 
 ```js
 //create double object which has a counter
@@ -181,3 +181,17 @@ function test() {
   };
 }
 ```
+
+## Create single note view
+
+- TDD a single note view object - view for showing a single note on a page
+  - Create note view js file
+  - use module pattern to create the object and export it in the global namespace
+  - it will be a single note view that can be instantiated
+  - it takes a note mode as a parameter and uses it's state to populate the single note view
+  - create a method that returns an HTML which represents the note model
+
+Test:
+
+- instantiation of note view object
+- creation of html
