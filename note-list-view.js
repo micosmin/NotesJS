@@ -7,7 +7,10 @@
   NoteListView.prototype.outputHtml = function() {
     var html = '<ul>';
     for (item of this.noteList) {
-      html += `<li><div>${item.substring(0, this.LIMIT)}</div></li>`;
+      html += `<li><div><a href="#notes/${item.id}">${item.text.substring(
+        0,
+        this.LIMIT
+      )}</a></div></li>`;
     }
     html += '</ul>';
 

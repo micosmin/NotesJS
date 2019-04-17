@@ -1,14 +1,8 @@
 function testThingIsAController() {
-  //Note List Double
   function NoteModelDouble() {
     this.list = [];
   }
   var noteModel = new NoteModelDouble();
-
-  //Note list view double
-  function NoteListViewDouble(list) {
-    this.noteList = list;
-  }
 
   var controller = new NoteController(noteModel);
 
@@ -18,8 +12,10 @@ function testThingIsAController() {
 testThingIsAController();
 
 function testControllerCanInsertText() {
+  var note = new Note('Text');
+
   function NoteModelDouble() {
-    this.list = ['Text'];
+    this.list = [note];
   }
 
   let noteModel = new NoteModelDouble();
@@ -29,6 +25,7 @@ function testControllerCanInsertText() {
   controller.insertHTML();
 
   assert.isTrue(document.getElementById('app').textContent === 'Text');
+  document.getElementById('app').innerHTML = ''; //clean the page
 }
 
 testControllerCanInsertText();

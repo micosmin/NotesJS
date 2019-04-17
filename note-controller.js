@@ -3,6 +3,11 @@
     this.noteList = noteModel; //note list
 
     this.noteListView = new NoteListView(this.noteList.list); //note list view
+    var url = window.location.href.split('#')[1];
+
+    window.addEventListener('hashchange', function() {
+      window.location = url;
+    });
   }
 
   NoteController.prototype.insertHTML = function() {

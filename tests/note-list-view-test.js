@@ -7,30 +7,38 @@ function testThingIsNoteListViewObject() {
 testThingIsNoteListViewObject();
 
 function testThingOutputsHTML() {
-  var noteList = ['Favourite food: ice-cream'];
+  var note = new Note('Favourite food: ice-cream');
+  var noteList = [note];
   var noteListView = new NoteListView(noteList);
 
-  let shortText = noteList[0].substring(0, 20);
-
+  let shortText = noteList[0].text.substring(0, 20);
   assert.isTrue(
-    noteListView.outputHtml() === `<ul><li><div>${shortText}</div></li></ul>`
+    noteListView.outputHtml() ===
+      `<ul><li><div><a href="#notes/${
+        noteList[0].id
+      }">${shortText}</a></div></li></ul>`
   );
 }
 
 testThingOutputsHTML();
 
 function testThingOutputsMultipleItemsHTML() {
-  var noteList = ['Favourite food: ice-cream', 'Favourite drink: tea'];
+  var note1 = new Note('Favourite food: ice-cream');
+  var note2 = new Note('Favourite drink: tea');
+
+  var noteList = [note1, note2];
   var noteListView = new NoteListView(noteList);
 
-  var shortStrings = noteList.map(list => list.substring(0, 20));
+  var noteListCopy = JSON.parse(JSON.stringify(noteList));
+
+  noteListCopy.map(elem => (elem.text = elem.text.substring(0, 20)));
 
   var testOutput = '<ul>';
-  shortStrings.forEach(function(list) {
-    testOutput += '<li><div>' + list + '</div></li>';
+  noteListCopy.forEach(function(list) {
+    testOutput +=
+      `<li><div><a href="#notes/${list.id}">` + list.text + '</a></div></li>';
   });
   testOutput += '</ul>';
-
   assert.isTrue(noteListView.outputHtml() === testOutput);
 }
 
@@ -43,3 +51,21 @@ function testThingHandlesEmptyNoteList() {
 }
 
 testThingHandlesEmptyNoteList();
+
+function testThingHasLinksForEachListItem() {
+  var note = new Note('Favourite food: ice-cream');
+
+  var noteList = [note];
+
+  var noteListView = new NoteListView(noteList);
+
+  let shortText = noteList[0].text.substring(0, 20);
+
+  assert.isTrue(
+    noteListView.outputHtml() ===
+      `<ul><li><div><a href="#notes/${
+        note.id
+      }">${shortText}</a></div></li></ul>`
+  );
+}
+testThingHasLinksForEachListItem();

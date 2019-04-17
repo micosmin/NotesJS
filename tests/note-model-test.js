@@ -11,7 +11,7 @@ function testInitialText(text) {
 testInitialText('My favourite language is JavaScript');
 
 function testNoteIDCreation() {
-  var note3 = new Note('text');
+  var note3 = new Note();
   assert.isTrue(note3.id === 3);
 }
 
