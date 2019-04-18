@@ -22,12 +22,19 @@
     return result;
   }
 
+  function monitorSubmitEvents() {
+    window.addEventListener('submit', function(event) {
+      console.log(event);
+      event.preventDefault();
+    });
+  }
+
   function NoteController(noteList) {
     this.noteList = noteList;
     this.noteListView = new NoteListView(this.noteList.list);
 
     monitorPageChange(this.noteList.list);
-
+    monitorSubmitEvents();
     this.insertHTML();
   }
 
