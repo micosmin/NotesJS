@@ -24,7 +24,7 @@
 
   function monitorSubmitEvents() {
     window.addEventListener('submit', function(event) {
-      console.log(event);
+      console.log(event.path[0][0].value);
       event.preventDefault();
     });
   }
