@@ -223,7 +223,25 @@ window.addEventListener('hashChange', function() {});
   - TDD updating note controller.js to load content for the single note page
   - note controller must listen to hashChange events - when one happens change the content of app
 
-> Single Page app
+Moving to another #page seems a bit tricky at the moment:
+
+- I have broken down the problem into smaller parts
+- First, see if the controller can monitor for window events, such as load and hashchange - try them manually: I put the methods outside of the exported controller constructor
+- This works, but now I need the bit (#notes/1) from the url to call display the text of the note in question: HOW? build a url parsers which returns an object {page:, id} for the moment
+- Don't know yet how to test it, so I am going to spike until I have a workable solution
+  - I have created a link on the main page with a target of #notes/1
+  - This work: when I click on it the url changes and my console displays the parse url result {page: 'notes', id: '1'}, which I can use to retrieve a note with id 1
+- What do I need to do next? Test whether I can get my object out of an array and insert it in the new page? How do I do that?
+
+  - Create an array with 1 note
+  - When the page changes, I want to call the showPage method which takes the note in question
+  - Getting that note inside showPage will involve using the parse url result and the ID key
+  - Before that step, to check whether I can insert html int he page when I change URLs, I will whether on url change event I can insert text in the <div id='app'>\
+  - This works, and it also works with passing a ShowSinglePage object with a note and calling it's createHtml() function
+  - Next - retrieve a note from an array - hard code the page number in the index to start with. This works now - uses an array of notes and the parseURL to create an html that gets injected on the page once a hashChange event is triggered
+  - Next - remove hard code and implement this to work with noteListView
+
+  > Single Page app
 
 - once browser loads - no page refresh - all changes happen by manipulating HTML (insert html dynamically)
   > Navigation

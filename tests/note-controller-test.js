@@ -14,11 +14,11 @@ testThingIsAController();
 function testControllerCanInsertText() {
   var note = new Note('Text');
 
-  function NoteModelDouble() {
+  function NoteModelDouble(note) {
     this.list = [note];
   }
 
-  let noteModel = new NoteModelDouble();
+  let noteModel = new NoteModelDouble(note);
 
   let controller = new NoteController(noteModel);
 
@@ -29,3 +29,7 @@ function testControllerCanInsertText() {
 }
 
 testControllerCanInsertText();
+
+function testChangingHTML() {}
+
+testChangingHTML();
