@@ -1,35 +1,47 @@
+//ARRANGE
+function NoteListDouble() {
+  this.list = [];
+}
+NoteListDouble.prototype.addNote = function(note) {
+  this.list.push(note);
+};
+var note = new Note('Texts sooooo much text all the way');
+var noteListDouble = new NoteListDouble();
+noteListDouble.addNote(note);
+var controller = new NoteController(noteListDouble);
+
+//ASSERT/ACT
 function testThingIsAController() {
-  function NoteModelDouble() {
-    this.list = [];
-  }
-  var noteModel = new NoteModelDouble();
-
-  var controller = new NoteController(noteModel);
-
   assert.isTrue(controller instanceof NoteController);
 }
 
 testThingIsAController();
 
 function testControllerCanInsertText() {
-  var note = new Note('Text');
-
-  function NoteModelDouble(note) {
-    this.list = [note];
-  }
-
-  let noteModel = new NoteModelDouble(note);
-
-  let controller = new NoteController(noteModel);
-
   controller.insertHTML();
-
-  assert.isTrue(document.getElementById('app').textContent === 'Text');
+  assert.isTrue(
+    document.getElementById('app').textContent === 'Texts sooooo much te'
+  );
   document.getElementById('app').innerHTML = ''; //clean the page
 }
 
 testControllerCanInsertText();
 
-function testChangingHTML() {}
+function testControllerCanMovetoNotePage() {
+  controller.insertHTML();
 
-testChangingHTML();
+  window.addEventListener('click', function() {
+    window.location.href = 'index.html#note/9';
+    var html = noteListDouble.list[0].getText();
+    document.getElementById('app').innerHTML = html;
+  });
+
+  document.querySelector('div ul li div a').click(); //triggers the event listener
+
+  assert.isTrue(
+    document.getElementById('app').textContent ===
+      'Texts sooooo much text all the way'
+  );
+}
+
+testControllerCanMovetoNotePage();

@@ -239,11 +239,11 @@ Moving to another #page seems a bit tricky at the moment:
   - Before that step, to check whether I can insert html int he page when I change URLs, I will whether on url change event I can insert text in the <div id='app'>\
   - This works, and it also works with passing a ShowSinglePage object with a note and calling it's createHtml() function
   - Next - retrieve a note from an array - hard code the page number in the index to start with. This works now - uses an array of notes and the parseURL to create an html that gets injected on the page once a hashChange event is triggered
-  - Next - remove hard code and implement this to work with noteListView
+  - Removed hard coded notes and TDD of clicking a link and inserting html to show extended node
 
   > Single Page app
 
 - once browser loads - no page refresh - all changes happen by manipulating HTML (insert html dynamically)
-  > Navigation
+  Navigation:
 - direct user to new 'page' when a click happens
 - use window.location.hash

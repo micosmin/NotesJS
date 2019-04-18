@@ -1,19 +1,9 @@
 (function(exports) {
-  function monitorPageLoad() {
-    window.addEventListener('load', function() {
-      console.log('test load');
-    });
-  }
-  function monitorPageChange() {
+  function monitorPageChange(noteList) {
     window.addEventListener('hashchange', function() {
-      var testNotes1 = new Note('Sometext');
-      var testNotes2 = new Note('OtherText');
-      var notes = [testNotes1, testNotes2];
-
-      var resultObject = parseURL(window.location); //not useful at the moment
-
-      var note = retrieveNote(notes, resultObject.id);
-
+      var notes = noteList; //notelist gets passed as an argument in the function
+      var urlNoteObject = parseURL(window.location);
+      var note = retrieveNote(notes, urlNoteObject.id);
       var showPage = new SingleNoteView(note[0]);
       document.getElementById('app').innerHTML = showPage.createHTML();
     });
@@ -32,12 +22,13 @@
     return result;
   }
 
-  function NoteController(noteModel) {
-    this.noteList = noteModel; //note list
-    this.noteListView = new NoteListView(this.noteList.list); //note list view
+  function NoteController(noteList) {
+    this.noteList = noteList;
+    this.noteListView = new NoteListView(this.noteList.list);
 
-    monitorPageLoad();
-    monitorPageChange();
+    monitorPageChange(this.noteList.list);
+
+    this.insertHTML();
   }
 
   NoteController.prototype.insertHTML = function() {
