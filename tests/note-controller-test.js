@@ -44,4 +44,4 @@ function testControllerCanMovetoNotePage() {
   );
 }
 
-testControllerCanMovetoNotePage();
+// testControllerCanMovetoNotePage();
