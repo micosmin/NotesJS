@@ -247,3 +247,10 @@ Moving to another #page seems a bit tricky at the moment:
   Navigation:
 - direct user to new 'page' when a click happens
 - use window.location.hash
+
+> Moved testing to a separate test.html page and they don't work anymore, while the app still works
+
+Further changes
+
+- text area clears after note is added
+- text area comes into focus after note is added

@@ -15,10 +15,11 @@ function testThingIsAController() {
   assert.isTrue(controller instanceof NoteController);
 }
 
-// testThingIsAController();
+//testThingIsAController();
 
 function testControllerCanInsertText() {
   controller.insertHTML();
+
   assert.isTrue(
     document.getElementById('app').textContent === 'Texts sooooo much te'
   );
@@ -26,7 +27,7 @@ function testControllerCanInsertText() {
   noteListDouble.list = [];
 }
 
-// testControllerCanInsertText();
+//testControllerCanInsertText();
 
 function testControllerCanMovetoNotePage() {
   controller.insertHTML();
@@ -45,7 +46,7 @@ function testControllerCanMovetoNotePage() {
   );
 }
 
-// testControllerCanMovetoNotePage();
+//testControllerCanMovetoNotePage();
 
 function testSubmitButtonAddsANewNote() {
   //test if form is empty

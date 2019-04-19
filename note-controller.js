@@ -4,6 +4,7 @@
   window.addEventListener('load', event => {
     var noteList = new NoteList();
     controller = new NoteController(noteList);
+    controller.insertHTML();
   });
 
   function monitorPageChange(noteList) {
@@ -36,12 +37,15 @@
       var formValue = event.path[0][0].value;
       //get noteList (passed as argument)
       var notes = noteList;
+      console.log(notes.list);
       //create note
       var note = new Note(formValue);
       //add note to note list
       notes.addNote(note);
       //update the app element
       controller.insertHTML();
+      document.getElementById('textArea').value = '';
+      document.getElementById('textArea').focus();
     });
   }
 
@@ -51,8 +55,6 @@
 
     monitorPageChange(this.noteList.list);
     monitorSubmitEvents(this.noteList);
-
-    this.insertHTML();
   }
 
   NoteController.prototype.insertHTML = function() {
