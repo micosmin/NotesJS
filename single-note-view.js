@@ -5,7 +5,7 @@
 
   SingleNoteView.prototype.createHTML = function() {
     let text = this.noteModel.getText();
-    return `<div>${text}</div>`;
+    return `<div class="expandedNote">${text}</div>`;
   };
 
   exports.SingleNoteView = SingleNoteView;

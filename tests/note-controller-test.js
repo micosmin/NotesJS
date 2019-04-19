@@ -1,65 +1,53 @@
-//ARRANGE
-function NoteListDouble() {
-  this.list = [];
-}
-NoteListDouble.prototype.addNote = function(note) {
-  this.list.push(note);
-};
-var note = new Note('');
-var noteListDouble = new NoteListDouble();
-noteListDouble.addNote(note);
-var controller = new NoteController(noteListDouble);
-
 //ASSERT/ACT
 function testThingIsAController() {
   assert.isTrue(controller instanceof NoteController);
 }
-
-//testThingIsAController();
+testThingIsAController();
 
 function testControllerCanInsertText() {
+  var note = new Note('Texts sooooo much text all the way');
+  noteList.addNote(note);
   controller.insertHTML();
 
+  let id = 'app';
+  if (window.location.href.split('/').pop() === 'test.html') {
+    id = 'appTest';
+  }
+
   assert.isTrue(
-    document.getElementById('app').textContent === 'Texts sooooo much te'
+    document.getElementById(id).textContent === 'Texts sooooo much te'
   );
-  document.getElementById('app').innerHTML = ''; //clean the page
-  noteListDouble.list = [];
+  noteList.clearNote();
+  document.getElementById('appTest').innerHTML = ''; //clean the page
+}
+
+testControllerCanMovetoNotePage();
+
+function testSubmitButtonAddsANewNote() {
+  //add text to text area
+  document.getElementById('textAreaTest').value = 'Testing new note again';
+  //select the submit button and click on it
+  document.querySelectorAll('[type="submit"]')[0].click();
+  // //select the app id and check if text submitted is in there
+  console.log(document.getElementById('appTest'));
+  assert.isTrue(
+    document.getElementById('appTest').textContent === 'Testing new note'
+  );
+}
+
+testSubmitButtonAddsANewNote();
+
+function testControllerCanMovetoNotePage() {
+  //triggers the event listener
+  document.querySelector('div ul li div a').click();
+  console.log(document.getElementById('appTest').innerText);
+  console.log(document);
+  assert.isTrue(
+    document.getElementById('appTest').textContent ===
+      'Texts sooooo much text all the way'
+  );
+  noteList.clearNote();
+  document.getElementById('appTest').innerHTML = ''; //clean the page
 }
 
 //testControllerCanInsertText();
-
-function testControllerCanMovetoNotePage() {
-  controller.insertHTML();
-
-  window.addEventListener('click', function() {
-    window.location.href = 'index.html#note/9';
-    var html = noteListDouble.list[0].getText();
-    document.getElementById('app').innerHTML = html;
-  });
-
-  document.querySelector('div ul li div a').click(); //triggers the event listener
-
-  assert.isTrue(
-    document.getElementById('app').textContent ===
-      'Texts sooooo much text all the way'
-  );
-}
-
-//testControllerCanMovetoNotePage();
-
-function testSubmitButtonAddsANewNote() {
-  //test if form is empty
-  assert.isTrue(document.getElementById('app').textContent === '');
-  //add text to text area
-  document.getElementById('textArea').value = 'Testing new note';
-  //select the submit button and click on it
-  document.querySelectorAll('[type="submit"]')[0].click();
-  //select the app id and check if text submitted is in there
-  console.log(document.getElementById('app').textContent);
-  assert.isTrue(
-    document.querySelector('#app').textContent === 'Testing new note'
-  );
-}
-
-// testSubmitButtonAddsANewNote();

@@ -26,7 +26,7 @@ function testCreationOfHTML() {
 
   var singleNoteView = new SingleNoteView(noteDouble);
   var html = singleNoteView.createHTML();
-  assert.isTrue(html === '<div>text</div>');
+  assert.isTrue(html === '<div class="expandedNote">text</div>');
 }
 
 testCreationOfHTML();

@@ -1,64 +1,26 @@
 (function(exports) {
-  var controller; //defined it in global namespace
-
-  window.addEventListener('load', event => {
-    var noteList = new NoteList();
-    controller = new NoteController(noteList);
-    controller.insertHTML();
-  });
-
-  function monitorPageChange(noteList) {
-    window.addEventListener('hashchange', function() {
-      var notes = noteList; //notelist gets passed as an argument in the function
-      var urlNoteObject = parseURL(window.location);
-      var note = retrieveNote(notes, urlNoteObject.id);
-      var showPage = new SingleNoteView(note[0]);
-      document.getElementById('app').innerHTML = showPage.createHTML();
-    });
-  }
-
-  function retrieveNote(notes, id) {
-    var note = notes.filter(note => note.id == id);
-    return note;
-  }
-
-  function parseURL(url) {
-    result = {
-      page: url.href.split('#')[1].split('/')[0],
-      id: url.href.split('#')[1].split('/')[1]
-    };
-    return result;
-  }
-
-  function monitorSubmitEvents(noteList) {
-    window.addEventListener('submit', function(event) {
-      event.preventDefault();
-      //get form value
-      var formValue = event.path[0][0].value;
-      //get noteList (passed as argument)
-      var notes = noteList;
-      console.log(notes.list);
-      //create note
-      var note = new Note(formValue);
-      //add note to note list
-      notes.addNote(note);
-      //update the app element
-      controller.insertHTML();
-      document.getElementById('textArea').value = '';
-      document.getElementById('textArea').focus();
-    });
+  function testPage() {
+    if (window.location.href.split('/').pop() === 'test.html') {
+      return true;
+    }
+    return false;
   }
 
   function NoteController(noteList) {
     this.noteList = noteList;
     this.noteListView = new NoteListView(this.noteList.list);
-
-    monitorPageChange(this.noteList.list);
-    monitorSubmitEvents(this.noteList);
   }
 
   NoteController.prototype.insertHTML = function() {
-    document.getElementById('app').innerHTML = this.noteListView.outputHtml();
+    if (noteList.list.length > 0) {
+      //Check if you are in testing mode
+      let id = 'app';
+      if (testPage()) {
+        id = 'appTest';
+      }
+
+      document.getElementById(id).innerHTML = this.noteListView.outputHtml();
+    }
   };
 
   exports.NoteController = NoteController;

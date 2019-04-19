@@ -6,27 +6,23 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="monitor-module.js"></script>
     <script src="note-model.js"></script>
     <script src="note-list-model.js"></script>
     <script src="note-list-view.js"></script>
     <script src="single-note-view.js"></script>
     <script src="tests/assert.js"></script>
-    <script src="tests/note-model-test.js"></script>
-    <script src="tests/note-list-model-test.js"></script>
-    <script src="tests/note-list-view-test.js"></script>
-    <script src="tests/single-note-view-test.js"></script>
-
-    <script src="app.js"></script>
+    <script src="note-controller.js"></script>
   </head>
   <body>
     <div class="container" style="width: 50%">
-      <form id="text" action="index.html" method="post">
+      <form id="textTest" action="test.html" method="post">
         <div class="form-group">
-          <label for="textArea">Note</label>
+          <label for="textArea">TestNote</label>
           <textarea
             type="textarea"
             class="form-control"
-            id="textArea"
+            id="textAreaTest"
             placeholder="Enter some text"
             autofocus
           >
@@ -37,9 +33,14 @@
       </form>
     </div>
     <div class="container" style="width: 50%">
-      <div id="app"></div>
+      <div id="appTest"></div>
     </div>
   </body>
-  <script src="note-controller.js"></script>
+
+  <script src="app.js"></script>
   <script src="tests/note-controller-test.js"></script>
+  <script src="tests/note-model-test.js"></script>
+  <script src="tests/note-list-model-test.js"></script>
+  <script src="tests/note-list-view-test.js"></script>
+  <script src="tests/single-note-view-test.js"></script>
 </html>

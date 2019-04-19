@@ -6,7 +6,7 @@
 
   NoteListView.prototype.outputHtml = function() {
     var html = '<ul class="list-group">';
-    for (item of this.noteList) {
+    for (item of noteList.list) {
       html += `<li class="list-group-item" ><div><a href="#notes/${
         item.id
       }">${item.text.substring(0, this.LIMIT)}</a></div></li>`;

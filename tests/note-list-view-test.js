@@ -7,15 +7,17 @@ function testThingIsNoteListViewObject() {
 testThingIsNoteListViewObject();
 
 function testThingOutputsHTML() {
+  noteList.clearNote();
   var note = new Note('Favourite food: ice-cream');
-  var noteList = [note];
+  noteList.addNote(note);
   var noteListView = new NoteListView(noteList);
 
-  let shortText = noteList[0].text.substring(0, 20);
+  let shortText = noteList.list[noteList.list.length - 1].text.substring(0, 20);
+
   assert.isTrue(
     noteListView.outputHtml() ===
       `<ul class="list-group"><li class="list-group-item" ><div><a href="#notes/${
-        noteList[0].id
+        noteList.list[noteList.list.length - 1].id
       }">${shortText}</a></div></li></ul>`
   );
 }
@@ -23,32 +25,23 @@ function testThingOutputsHTML() {
 testThingOutputsHTML();
 
 function testThingOutputsMultipleItemsHTML() {
+  noteList.clearNote();
   var note1 = new Note('Favourite food: ice-cream');
   var note2 = new Note('Favourite drink: tea');
 
-  var noteList = [note1, note2];
+  noteList.addNote(note1);
+  noteList.addNote(note2);
   var noteListView = new NoteListView(noteList);
 
-  var noteListCopy = JSON.parse(JSON.stringify(noteList));
-
-  noteListCopy.map(elem => (elem.text = elem.text.substring(0, 20)));
-
-  var testOutput = '<ul class="list-group">';
-  noteListCopy.forEach(function(list) {
-    testOutput +=
-      `<li class="list-group-item" ><div><a href="#notes/${list.id}">` +
-      list.text +
-      '</a></div></li>';
-  });
-  testOutput += '</ul>';
-
+  let testOutput =
+    '<ul class="list-group"><li class="list-group-item" ><div><a href="#notes/8">Favourite food: ice-</a></div></li><li class="list-group-item" ><div><a href="#notes/9">Favourite drink: tea</a></div></li></ul>';
   assert.isTrue(noteListView.outputHtml() === testOutput);
 }
 
 testThingOutputsMultipleItemsHTML();
 
 function testThingHandlesEmptyNoteList() {
-  var noteList = [];
+  noteList.clearNote();
   var noteListView = new NoteListView(noteList);
   assert.isTrue(noteListView.outputHtml() === '<ul class="list-group"></ul>');
 }
@@ -56,18 +49,14 @@ function testThingHandlesEmptyNoteList() {
 testThingHandlesEmptyNoteList();
 
 function testThingHasLinksForEachListItem() {
+  noteList.clearNote();
   var note = new Note('Favourite food: ice-cream');
-
-  var noteList = [note];
-
+  noteList.addNote(note);
   var noteListView = new NoteListView(noteList);
 
-  let shortText = noteList[0].text.substring(0, 20);
   assert.isTrue(
     noteListView.outputHtml() ===
-      `<ul class="list-group"><li class="list-group-item" ><div><a href="#notes/${
-        note.id
-      }">${shortText}</a></div></li></ul>`
+      `<ul class="list-group"><li class="list-group-item" ><div><a href="#notes/10">Favourite food: ice-</a></div></li></ul>`
   );
 }
 testThingHasLinksForEachListItem();

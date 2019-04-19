@@ -11,5 +11,9 @@
     this.list.push(note);
   };
 
+  NoteList.prototype.clearNote = function() {
+    this.list = [];
+  };
+
   exports.NoteList = NoteList;
 })(this);

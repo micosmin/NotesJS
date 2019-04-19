@@ -12,7 +12,7 @@ testInitialText('My favourite language is JavaScript');
 
 function testNoteIDCreation() {
   var note3 = new Note();
-  assert.isTrue(note3.id === 3);
+  assert.isTrue(note3.id != 0);
 }
 
 testNoteIDCreation();

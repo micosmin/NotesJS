@@ -6,20 +6,20 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <script src="monitor-module.js"></script>
     <script src="note-controller.js"></script>
     <script src="note-model.js"></script>
     <script src="note-list-model.js"></script>
     <script src="note-list-view.js"></script>
     <script src="single-note-view.js"></script>
-    <script src="tests/assert.js"></script>
 
-    <script src="app.js"></script>
+    <script src="tests/assert.js"></script>
   </head>
   <body>
     <div class="container" style="width: 50%">
-      <form id="text" action="index.html" method="post">
+      <form id="textDev" action="index.html" method="post">
         <div class="form-group">
-          <label for="textArea">Note</label>
+          <label for="textArea">Real Note</label>
           <textarea
             type="textarea"
             class="form-control"
@@ -30,11 +30,12 @@
           </textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary mainApp">Submit</button>
       </form>
     </div>
     <div class="container" style="width: 50%">
       <div id="app"></div>
     </div>
   </body>
+  <script src="app.js"></script>
 </html>
