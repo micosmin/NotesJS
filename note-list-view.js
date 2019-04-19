@@ -5,12 +5,11 @@
   }
 
   NoteListView.prototype.outputHtml = function() {
-    var html = '<ul>';
+    var html = '<ul class="list-group">';
     for (item of this.noteList) {
-      html += `<li><div><a href="#notes/${item.id}">${item.text.substring(
-        0,
-        this.LIMIT
-      )}</a></div></li>`;
+      html += `<li class="list-group-item" ><div><a href="#notes/${
+        item.id
+      }">${item.text.substring(0, this.LIMIT)}</a></div></li>`;
     }
     html += '</ul>';
 

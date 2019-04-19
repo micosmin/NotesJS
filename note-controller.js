@@ -1,4 +1,11 @@
 (function(exports) {
+  var controller; //defined it in global namespace
+
+  window.addEventListener('load', event => {
+    var noteList = new NoteList();
+    controller = new NoteController(noteList);
+  });
+
   function monitorPageChange(noteList) {
     window.addEventListener('hashchange', function() {
       var notes = noteList; //notelist gets passed as an argument in the function
@@ -22,10 +29,19 @@
     return result;
   }
 
-  function monitorSubmitEvents() {
+  function monitorSubmitEvents(noteList) {
     window.addEventListener('submit', function(event) {
-      console.log(event.path[0][0].value);
       event.preventDefault();
+      //get form value
+      var formValue = event.path[0][0].value;
+      //get noteList (passed as argument)
+      var notes = noteList;
+      //create note
+      var note = new Note(formValue);
+      //add note to note list
+      notes.addNote(note);
+      //update the app element
+      controller.insertHTML();
     });
   }
 
@@ -34,7 +50,8 @@
     this.noteListView = new NoteListView(this.noteList.list);
 
     monitorPageChange(this.noteList.list);
-    monitorSubmitEvents();
+    monitorSubmitEvents(this.noteList);
+
     this.insertHTML();
   }
 

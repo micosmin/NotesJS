@@ -5,7 +5,7 @@ function NoteListDouble() {
 NoteListDouble.prototype.addNote = function(note) {
   this.list.push(note);
 };
-var note = new Note('Texts sooooo much text all the way');
+var note = new Note('');
 var noteListDouble = new NoteListDouble();
 noteListDouble.addNote(note);
 var controller = new NoteController(noteListDouble);
@@ -15,7 +15,7 @@ function testThingIsAController() {
   assert.isTrue(controller instanceof NoteController);
 }
 
-testThingIsAController();
+// testThingIsAController();
 
 function testControllerCanInsertText() {
   controller.insertHTML();
@@ -23,9 +23,10 @@ function testControllerCanInsertText() {
     document.getElementById('app').textContent === 'Texts sooooo much te'
   );
   document.getElementById('app').innerHTML = ''; //clean the page
+  noteListDouble.list = [];
 }
 
-testControllerCanInsertText();
+// testControllerCanInsertText();
 
 function testControllerCanMovetoNotePage() {
   controller.insertHTML();
@@ -45,3 +46,19 @@ function testControllerCanMovetoNotePage() {
 }
 
 // testControllerCanMovetoNotePage();
+
+function testSubmitButtonAddsANewNote() {
+  //test if form is empty
+  assert.isTrue(document.getElementById('app').textContent === '');
+  //add text to text area
+  document.getElementById('textArea').value = 'Testing new note';
+  //select the submit button and click on it
+  document.querySelectorAll('[type="submit"]')[0].click();
+  //select the app id and check if text submitted is in there
+  console.log(document.getElementById('app').textContent);
+  assert.isTrue(
+    document.querySelector('#app').textContent === 'Testing new note'
+  );
+}
+
+// testSubmitButtonAddsANewNote();
