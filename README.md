@@ -252,5 +252,12 @@ Moving to another #page seems a bit tricky at the moment:
 
 Further changes
 
-- text area clears after note is added
-- text area comes into focus after note is added
+- text area clears after note is added - DONE
+- text area comes into focus after note is added - DONE
+
+Updated app.js
+
+- uses event listener on window to monitor when page ends its loading process
+- creates controller and empty note list once that's finished
+- it also brings in the module monitoring page change and submit events
+  - this last step needed a reference to the controller passed in the module as the controller created when the pages loads was not accessible in the module

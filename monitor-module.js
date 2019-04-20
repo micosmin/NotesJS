@@ -36,7 +36,7 @@ var monitorModule = (function() {
   }
 
   return {
-    monitorPageChange: function(noteList) {
+    monitorPageChange: function(controller, noteList) {
       window.addEventListener('hashchange', function() {
         //if you are going back to index, update the html by inserting all note
         if (parseURL(window.location) == 'index.html') {
@@ -63,7 +63,7 @@ var monitorModule = (function() {
       });
     },
 
-    monitorSubmitEvents: function(noteList) {
+    monitorSubmitEvents: function(controller, noteList) {
       // if test page location, change id for form
       let form = targetForm();
 
