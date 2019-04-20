@@ -12,7 +12,7 @@
   }
 
   NoteController.prototype.insertHTML = function() {
-    if (noteList.list.length > 0) {
+    if (this.noteList.list.length > 0) {
       //Check if you are in testing mode
       let id = 'app';
       if (testPage()) {

@@ -1,10 +1,10 @@
 // app.js
-var noteList = new NoteList();
+window.addEventListener('load', () => {
+  var noteList = new NoteList();
+  console.log(noteList);
+  controller = new NoteController(noteList);
 
-controller = new NoteController(noteList);
-
-controller.insertHTML();
-
-monitorModule.monitorPageChange(this.noteList.list);
-
-monitorModule.monitorSubmitEvents(this.noteList);
+  controller.insertHTML();
+  monitorModule.monitorPageChange(noteList.list);
+  monitorModule.monitorSubmitEvents(noteList);
+});
